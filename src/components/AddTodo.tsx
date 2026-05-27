@@ -8,6 +8,7 @@ interface AddTodoProps {
 export const AddTodo = ({ onAddTodo }: AddTodoProps) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('medium');
   const [isExpanded, setIsExpanded] = useState(false);
@@ -18,12 +19,14 @@ export const AddTodo = ({ onAddTodo }: AddTodoProps) => {
       onAddTodo({
         title: title.trim(),
         description: description.trim(),
+        category: category.trim(),
         dueDate,
         priority,
         completed: false,
       });
       setTitle('');
       setDescription('');
+      setCategory('');
       setDueDate('');
       setPriority('medium');
       setIsExpanded(false);
@@ -62,6 +65,18 @@ export const AddTodo = ({ onAddTodo }: AddTodoProps) => {
           />
 
           <div className="add-todo__controls">
+            <div className="add-todo__control">
+              <label htmlFor="category">Category:</label>
+              <input
+                id="category"
+                type="text"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                placeholder="makanan, peralatan, dll."
+                className="add-todo__category"
+              />
+            </div>
+
             <div className="add-todo__control">
               <label htmlFor="due-date">Due date:</label>
               <input

@@ -11,6 +11,7 @@ export const TodoItem = ({ todo, onUpdate, onDelete }: TodoItemProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(todo.title);
   const [editedDescription, setEditedDescription] = useState(todo.description);
+  const [editedCategory, setEditedCategory] = useState(todo.category || '');
   const [editedDueDate, setEditedDueDate] = useState(todo.dueDate || '');
 
   const handleToggleComplete = () => {
@@ -22,6 +23,7 @@ export const TodoItem = ({ todo, onUpdate, onDelete }: TodoItemProps) => {
       onUpdate(todo.id, {
         title: editedTitle.trim(),
         description: editedDescription.trim(),
+        category: editedCategory.trim(),
         dueDate: editedDueDate,
       });
       setIsEditing(false);
@@ -31,6 +33,7 @@ export const TodoItem = ({ todo, onUpdate, onDelete }: TodoItemProps) => {
   const handleCancelEdit = () => {
     setEditedTitle(todo.title);
     setEditedDescription(todo.description);
+    setEditedCategory(todo.category || '');
     setEditedDueDate(todo.dueDate || '');
     setIsEditing(false);
   };
@@ -69,6 +72,13 @@ export const TodoItem = ({ todo, onUpdate, onDelete }: TodoItemProps) => {
           onChange={(e) => setEditedDescription(e.target.value)}
           className="todo-item__edit-description"
           rows={2}
+        />
+        <input
+          type="text"
+          value={editedCategory}
+          onChange={(e) => setEditedCategory(e.target.value)}
+          className="todo-item__edit-category"
+          placeholder="Category"
         />
         <input
           type="date"
@@ -114,6 +124,9 @@ export const TodoItem = ({ todo, onUpdate, onDelete }: TodoItemProps) => {
         </div>
         {todo.description && (
           <p className="todo-item__description">{todo.description}</p>
+        )}
+        {todo.category && (
+          <p className="todo-item__category">Category: {todo.category}</p>
         )}
         {todo.dueDate && (
           <p className="todo-item__due-date">📅 {formatDate(todo.dueDate)}</p>
