@@ -5,7 +5,7 @@ content = {
     'title': 'Functional Specification Document - My Tasks TODO List App',
     'version': '1.1.0',
     'date': 'May 27, 2026',
-    'author': 'Automated Project Documentation',
+    'author': 'Lioe Inyan',
     'sections': [
         {
             'heading': 'Project Overview',

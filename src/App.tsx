@@ -117,7 +117,6 @@ function App() {
               </div>
 
               <label className="filters__category">
-                <span>Category</span>
                 <select
                   value={selectedCategoryFilter}
                   onChange={(event) => setCategoryFilter(event.target.value)}
